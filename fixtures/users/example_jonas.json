@@ -1,0 +1,55 @@
+{
+  "handle": "example_jonas",
+  "displayName": "Jonas Example",
+  "avatarUrl": null,
+  "posts": [
+    {
+      "id": "jonas-1",
+      "text": "Injective perps liquidity looks deeper this session. Perps books are awake.",
+      "createdAt": "2026-11-14T20:10:00.000Z",
+      "type": "original"
+    },
+    {
+      "id": "jonas-2",
+      "text": "Orderbook depth on the perp venue I follow is tighter. Liquidity is sitting closer.",
+      "createdAt": "2026-11-14T21:15:00.000Z",
+      "type": "original"
+    },
+    {
+      "id": "jonas-3",
+      "text": "Book depth is the perp signal I trust. Liquidity tells me more than headlines.",
+      "createdAt": "2026-11-14T22:05:00.000Z",
+      "type": "reply"
+    },
+    {
+      "id": "jonas-4",
+      "text": "Maker programs are doing more for liquidity than announcements. Perps feel it.",
+      "createdAt": "2026-11-13T19:40:00.000Z",
+      "type": "original"
+    },
+    {
+      "id": "jonas-5",
+      "text": "Liquidity providers are the quiet half of the orderbook. Depth is the receipt.",
+      "createdAt": "2026-11-13T21:30:00.000Z",
+      "type": "original"
+    },
+    {
+      "id": "jonas-6",
+      "text": "Tighter spreads show up when makers stay on the perp book. Liquidity follows makers.",
+      "createdAt": "2026-11-12T23:05:00.000Z",
+      "type": "reply"
+    },
+    {
+      "id": "jonas-7",
+      "text": "Routing through the orderbook keeps perp liquidity honest. Depth over slogans.",
+      "createdAt": "2026-11-12T20:45:00.000Z",
+      "type": "original"
+    },
+    {
+      "id": "jonas-8",
+      "text": "More perp venues, same matching engine, deeper liquidity. Orderbook still the source.",
+      "createdAt": "2026-11-11T18:20:00.000Z",
+      "type": "quote"
+    }
+  ]
+}

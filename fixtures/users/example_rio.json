@@ -1,0 +1,25 @@
+{
+  "handle": "example_rio",
+  "displayName": "Rio Example",
+  "avatarUrl": null,
+  "posts": [
+    {
+      "id": "rio-1",
+      "text": "INJ to the moon. Pump the price. My target entry is now. $INJ",
+      "createdAt": "2026-11-14T18:00:00.000Z",
+      "type": "original"
+    },
+    {
+      "id": "rio-2",
+      "text": "Bullish chart. Buy the dip. This is not financial advice. #injective",
+      "createdAt": "2026-11-14T18:20:00.000Z",
+      "type": "reply"
+    },
+    {
+      "id": "rio-3",
+      "text": "Leverage and a moonshot. Price target only. $INJ https://t.co/example",
+      "createdAt": "2026-11-13T19:00:00.000Z",
+      "type": "quote"
+    }
+  ]
+}

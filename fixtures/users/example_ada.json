@@ -1,0 +1,55 @@
+{
+  "handle": "example_ada",
+  "displayName": "Ada Example",
+  "avatarUrl": null,
+  "posts": [
+    {
+      "id": "ada-1",
+      "text": "The INJ burns cleared in the burn auction. INJ burns took another slice of supply with the fees.",
+      "createdAt": "2026-11-14T14:05:00.000Z",
+      "type": "original"
+    },
+    {
+      "id": "ada-2",
+      "text": "INJ burns are the posts I come back to. The burn auction retires supply. INJ burns again overnight.",
+      "createdAt": "2026-11-14T15:10:00.000Z",
+      "type": "original"
+    },
+    {
+      "id": "ada-3",
+      "text": "Agreed. INJ burns plus the burn auction are the tokenomics I track. Supply is the result of INJ burns.",
+      "createdAt": "2026-11-14T15:40:00.000Z",
+      "type": "reply"
+    },
+    {
+      "id": "ada-4",
+      "text": "Fee pool funded a round of INJ burns. The auction took supply out. INJ burns sit on my list.",
+      "createdAt": "2026-11-13T16:05:00.000Z",
+      "type": "original"
+    },
+    {
+      "id": "ada-5",
+      "text": "INJ burns continue. Burn auction, fee pool, supply. INJ burns are the whole loop.",
+      "createdAt": "2026-11-13T14:20:00.000Z",
+      "type": "quote"
+    },
+    {
+      "id": "ada-6",
+      "text": "Supply after the INJ burns is the figure I check. The auction was busy because of INJ burns.",
+      "createdAt": "2026-11-12T16:15:00.000Z",
+      "type": "original"
+    },
+    {
+      "id": "ada-7",
+      "text": "The fee pool feeding INJ burns is the tokenomics piece I keep. INJ burns first, auction after that.",
+      "createdAt": "2026-11-12T13:30:00.000Z",
+      "type": "reply"
+    },
+    {
+      "id": "ada-8",
+      "text": "Morning INJ burns. Auction demand held and supply moved. INJ burns did the heavy lifting.",
+      "createdAt": "2026-11-11T15:25:00.000Z",
+      "type": "original"
+    }
+  ]
+}
