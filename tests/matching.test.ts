@@ -127,10 +127,11 @@ describe('profiles and traits', () => {
     expect(ranked[0]!.similarity).toBeGreaterThan(50);
 
     const preview = examplePair();
-    expect(preview.score).toBe(ranked[0]!.similarity);
-    expect(preview.why).toBe(ranked[0]!.why);
+    const trio = rankCandidates(ada!, [kofi!, mina!]).find((candidate) => candidate.handle === 'example_kofi');
+    expect(preview.score).toBe(trio?.similarity);
+    expect(preview.why).toBe(trio?.why);
+    expect(preview.score).toBe(73);
     expect(preview.left.handle).toBe('example_ada');
     expect(preview.right.handle).toBe('example_kofi');
-    expect(preview.score).not.toBe(87);
   });
 });

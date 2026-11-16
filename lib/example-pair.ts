@@ -1,8 +1,6 @@
 import ada from '@/fixtures/users/example_ada.json';
-import jonas from '@/fixtures/users/example_jonas.json';
 import kofi from '@/fixtures/users/example_kofi.json';
 import mina from '@/fixtures/users/example_mina.json';
-import rio from '@/fixtures/users/example_rio.json';
 import { initials } from '@/lib/handles';
 import { buildProfile } from '@/lib/matching/profile';
 import { rankCandidates } from '@/lib/matching/rank';
@@ -13,7 +11,9 @@ type FixtureFile = {
   posts: Array<{ id: string; text: string; createdAt: string; type: string }>;
 };
 
-const SAMPLE: FixtureFile[] = [ada, kofi, mina, jonas, rio];
+// Ada, Kofi, and Mina are the sample walkthrough: Mina waits, then Ada and Kofi lock.
+// IDF across that trio is what the stored pair score is measured against.
+const SAMPLE: FixtureFile[] = [ada, kofi, mina];
 
 function postsOf(file: FixtureFile): Post[] {
   return file.posts.map((post) => ({
