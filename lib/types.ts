@@ -71,4 +71,4 @@ export type TwinBody =
       demo: boolean;
     }
   | { status: 'no_posts'; handle: string; message: string }
-  | { status: 'error'; message: string };
+  | { status: 'error'; message: string; code?: 'config' };

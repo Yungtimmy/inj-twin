@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import pg from 'pg';
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
@@ -23,8 +23,15 @@ async function applyMigration() {
     await client.query('drop schema if exists public cascade');
     await client.query('create schema public');
     await client.query('grant all on schema public to public');
-    const sql = readFileSync(path.join(process.cwd(), 'supabase/migrations/20261115120000_init.sql'), 'utf8');
-    await client.query(sql);
+    const dir = path.join(process.cwd(), 'supabase', 'migrations');
+    const files = readdirSync(dir)
+      .filter((file) => file.endsWith('.sql'))
+      .sort();
+    expect(files.length).toBeGreaterThan(0);
+    expect(files).toEqual([...files].sort());
+    for (const file of files) {
+      await client.query(readFileSync(path.join(dir, file), 'utf8'));
+    }
   } finally {
     client.release();
   }

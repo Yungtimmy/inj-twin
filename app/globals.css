@@ -209,7 +209,7 @@ footer {
   font-variant-numeric: tabular-nums;
   margin-top: 20px;
 }
-.score small { font-size: 56px; color: var(--text-2); letter-spacing: 0; margin-left: 10px; }
+.score small { font-size: 56px; color: var(--text-2); letter-spacing: 0; margin-left: 0; }
 .score-gap { height: 24px; }
 
 .handles { font-size: 17px; font-weight: 500; margin-top: 8px; }

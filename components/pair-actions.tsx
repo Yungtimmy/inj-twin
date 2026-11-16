@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { EvidenceDialog } from '@/components/evidence-dialog';
+import { SITE_URL } from '@/lib/config';
 import { pairShareText, waitingShareText, xIntentUrl } from '@/lib/share';
 import type { PublicTrait } from '@/lib/types';
 
@@ -25,7 +26,7 @@ export function PairActions({
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const pageUrl = `${origin}/twin/${youHandle}`;
-  const share = xIntentUrl(pairShareText({ twinHandle, similarity, why, url: pageUrl }));
+  const share = xIntentUrl(pairShareText({ twinHandle, similarity, why, url: `${SITE_URL}/twin/${youHandle}` }));
 
   async function copy() {
     try {
@@ -65,9 +66,8 @@ export function PairActions({
   );
 }
 
-export function WaitingActions({ origin, handle }: { origin: string; handle: string }) {
-  const pageUrl = `${origin}/twin/${handle}`;
-  const share = xIntentUrl(waitingShareText(pageUrl));
+export function WaitingActions({ handle }: { handle: string }) {
+  const share = xIntentUrl(waitingShareText(`${SITE_URL}/twin/${handle}`));
   return (
     <div className="actions">
       <a className="btn btn-lime" href={share} target="_blank" rel="noopener noreferrer">

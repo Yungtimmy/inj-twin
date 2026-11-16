@@ -1,16 +1,16 @@
-export const SITE_HOST = 'injtwin.vercel.app';
+/** Public site URL. Override with NEXT_PUBLIC_SITE_URL. */
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://twininj.vercel.app').replace(/\/$/, '');
 export const CREDIT_HANDLE = 'tebasv2';
 
 export function siteUrl(): string {
-  const raw = process.env.NEXT_PUBLIC_SITE_URL ?? `https://${SITE_HOST}`;
-  return raw.replace(/\/$/, '');
+  return SITE_URL;
 }
 
 export function siteHost(): string {
   try {
-    return new URL(siteUrl()).host;
+    return new URL(SITE_URL).host;
   } catch {
-    return SITE_HOST;
+    return 'twininj.vercel.app';
   }
 }
 

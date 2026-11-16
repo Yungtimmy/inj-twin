@@ -97,10 +97,9 @@ export function OgCard({
         <Mark />
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           {paired ? (
-            <div style={{ display: 'flex', alignItems: 'flex-end' }}>
-              <div style={{ display: 'flex', fontFamily: 'Instrument Serif', fontSize: 200, color: text, lineHeight: 0.9 }}>{score}</div>
-              <div style={{ display: 'flex', width: 28, height: 28 }} />
-              <div style={{ display: 'flex', fontFamily: 'Instrument Serif', fontSize: 96, color: text2, marginBottom: 16 }}>%</div>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 0 }}>
+              <div style={{ display: 'flex', fontFamily: 'Instrument Serif', fontSize: 200, color: text, lineHeight: 1 }}>{score}</div>
+              <div style={{ display: 'flex', fontFamily: 'Instrument Serif', fontSize: 96, color: text2, lineHeight: 1 }}>%</div>
             </div>
           ) : (
             <div style={{ display: 'flex', fontFamily: 'Instrument Serif', fontSize: 92, color: text, letterSpacing: '-0.03em' }}>

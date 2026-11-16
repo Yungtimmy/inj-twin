@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { examplePair } from '@/lib/example-pair';
 import { buildProfile } from '@/lib/matching/profile';
 import { rankCandidates } from '@/lib/matching/rank';
 import { cosine, idfWeights, similarity, WEIGHTS } from '@/lib/matching/score';
@@ -124,5 +125,12 @@ describe('profiles and traits', () => {
     const minaRank = ranked.find((candidate) => candidate.handle === 'example_mina');
     if (minaRank) expect(ranked[0]!.similarity).toBeGreaterThan(minaRank.similarity);
     expect(ranked[0]!.similarity).toBeGreaterThan(50);
+
+    const preview = examplePair();
+    expect(preview.score).toBe(ranked[0]!.similarity);
+    expect(preview.why).toBe(ranked[0]!.why);
+    expect(preview.left.handle).toBe('example_ada');
+    expect(preview.right.handle).toBe('example_kofi');
+    expect(preview.score).not.toBe(87);
   });
 });

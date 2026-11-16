@@ -7,7 +7,13 @@ import type { TwinBody } from '@/lib/types';
 
 const STEPS = ['Reading your Injective posts', 'Comparing with people waiting', 'Locking your pair'];
 
-export function HomeFinder({ demo }: { demo: boolean }) {
+export function HomeFinder({
+  demo,
+  example,
+}: {
+  demo: boolean;
+  example: { score: number; why: string; left: { initials: string; handle: string }; right: { initials: string; handle: string } };
+}) {
   const router = useRouter();
   const [handle, setHandle] = useState('');
   const [phase, setPhase] = useState<'idle' | 'searching'>('idle');
@@ -110,10 +116,10 @@ export function HomeFinder({ demo }: { demo: boolean }) {
         <p className="label">Example pair</p>
         <TwinCard
           status="Locked pair"
-          score={87}
-          why="Both of you post about INJ burns"
-          left={{ initials: 'EA', handle: 'example_ada' }}
-          right={{ initials: 'EK', handle: 'example_kofi' }}
+          score={example.score}
+          why={example.why}
+          left={example.left}
+          right={example.right}
         />
       </div>
     </section>

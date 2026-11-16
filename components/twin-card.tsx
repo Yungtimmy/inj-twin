@@ -42,8 +42,7 @@ export function TwinCard({
         <div className="score-gap" />
       ) : (
         <p className="score">
-          {score}
-          <small>%</small>
+          {score}<small>%</small>
         </p>
       )}
       <p className="handles">

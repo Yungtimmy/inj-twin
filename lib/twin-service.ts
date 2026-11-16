@@ -6,6 +6,7 @@ import { buildProfile } from '@/lib/matching/profile';
 import { rankCandidates } from '@/lib/matching/rank';
 import { getSupabase } from '@/lib/supabase';
 import type { Post, PostType, Profile, PublicMember, PublicPair, PublicTrait, StoredTrait, TwinBody } from '@/lib/types';
+import { isSupabaseConfigError, SUPABASE_CONFIG_MESSAGE } from '@/lib/supabase-config';
 import { loadPerson } from '@/lib/x/cache';
 import { UnknownHandleError, XRateLimitError, XSourceError } from '@/lib/x/errors';
 
@@ -182,6 +183,9 @@ export const readTwin = cache(async (rawHandle: string): Promise<{ http: number;
     }
     return { http: 200, body: waitingBody(member) };
   } catch (error) {
+    if (isSupabaseConfigError(error)) {
+      return { http: 503, body: { status: 'error', code: 'config', message: SUPABASE_CONFIG_MESSAGE } };
+    }
     console.error('readTwin failed', error instanceof Error ? error.message : 'unknown');
     return { http: 500, body: { status: 'error', message: 'Could not load this twin. Please try again.' } };
   }
@@ -254,11 +258,10 @@ export async function findTwin(rawHandle: string): Promise<{ http: number; body:
       return { http: 404, body: { status: 'error', message } };
     }
     if (error instanceof XSourceError) return { http: 502, body: { status: 'error', message: error.message } };
-    const message = error instanceof Error ? error.message : 'unknown';
-    console.error('findTwin failed', message);
-    if (message.includes('SUPABASE') || message.includes('Missing NEXT_PUBLIC_SUPABASE_URL')) {
-      return { http: 500, body: { status: 'error', message: 'The twin pool is not available right now. Please try again later.' } };
+    if (isSupabaseConfigError(error)) {
+      return { http: 503, body: { status: 'error', code: 'config', message: SUPABASE_CONFIG_MESSAGE } };
     }
+    console.error('findTwin failed', error instanceof Error ? error.message : 'unknown');
     return { http: 500, body: { status: 'error', message: 'Something went wrong while reading posts. Please try again.' } };
   }
 }

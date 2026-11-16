@@ -17,10 +17,10 @@ Design polish via unslop by [@heydamir](https://x.com/heydamir).
 | `NEXT_PUBLIC_SUPABASE_URL` | yes | Supabase project URL. The browser never calls Supabase. |
 | `SUPABASE_SERVICE_ROLE_KEY` | yes | Server-only service role key. Do not prefix it with `NEXT_PUBLIC_`. |
 | `X_BEARER_TOKEN` | no | X API v2 app-only bearer token. When it is unset, searches read `fixtures/users` and the UI shows a Demo data badge. |
-| `NEXT_PUBLIC_SITE_URL` | no | Public site URL used in share text. Defaults to `https://injtwin.vercel.app`. |
+| `NEXT_PUBLIC_SITE_URL` | no | Public site URL for the card, share text, and metadata. Defaults to `https://twininj.vercel.app`. |
 | `DATABASE_URL` | tests | Postgres connection string for `npm test`. The concurrency test drops and recreates the `public` schema on this database. |
 
-Copy `.env.example` to `.env.local` and fill in the Supabase values.
+Copy `.env.example` to `.env.local` and fill in the Supabase values. Without those two values the site still loads. A search returns a clear message instead of crashing, and asks for `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`.
 
 `lib/supabase.ts` imports `server-only`, so the service role key cannot be bundled into client code. Row level security is enabled on every table. There are no policies for `anon` or `authenticated`, and those roles are revoked from the tables and from `claim_twin`.
 

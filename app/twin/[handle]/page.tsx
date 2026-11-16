@@ -4,6 +4,7 @@ import { notFound, redirect } from 'next/navigation';
 import { PairActions, WaitingActions } from '@/components/pair-actions';
 import { TwinCard } from '@/components/twin-card';
 import { WaitingRefresh } from '@/components/waiting-refresh';
+import { siteUrl } from '@/lib/config';
 import { normalizeHandle } from '@/lib/handles';
 import { ogWhy } from '@/lib/share';
 import { requestOrigin } from '@/lib/origin';
@@ -19,6 +20,7 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
   if (!handle) return { title: 'INJ Twin' };
   const result = await readTwin(handle);
   const image = `/api/og/${handle}`;
+  const canonical = `${siteUrl()}/twin/${handle}`;
   if (result.body.status === 'paired') {
     const { pair } = result.body;
     const title = `@${pair.you.handle} & @${pair.twin.handle}`;
@@ -26,7 +28,8 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
     return {
       title,
       description,
-      openGraph: { title, description, images: [{ url: image, width: 1200, height: 630 }] },
+      alternates: { canonical },
+      openGraph: { title, description, url: canonical, images: [{ url: image, width: 1200, height: 630 }] },
       twitter: { card: 'summary_large_image', title, description, images: [image] },
     };
   }
@@ -36,7 +39,8 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
     return {
       title,
       description,
-      openGraph: { title, description, images: [{ url: image, width: 1200, height: 630 }] },
+      alternates: { canonical },
+      openGraph: { title, description, url: canonical, images: [{ url: image, width: 1200, height: 630 }] },
       twitter: { card: 'summary_large_image', title, description, images: [image] },
     };
   }
@@ -93,7 +97,7 @@ export default async function TwinPage({ params }: RouteParams) {
           <p className="lede">
             You&apos;re in the pool. When the next person who posts about Injective like you searches, you&apos;ll be paired and this page will show them.
           </p>
-          <WaitingActions origin={origin} handle={waiting.handle} />
+          <WaitingActions handle={waiting.handle} />
           {waiting.demo ? <p className="hint">Example data</p> : null}
           <WaitingRefresh />
         </div>
@@ -113,7 +117,7 @@ export default async function TwinPage({ params }: RouteParams) {
   return (
     <section className="split">
       <div>
-        <h1>No twin yet</h1>
+        <h1>{result.body.status === 'error' && result.body.code === 'config' ? 'Twin pool is not connected' : 'No twin yet'}</h1>
         <p className="lede">{result.body.status === 'error' ? result.body.message : 'This handle is not in the pool.'}</p>
         <div className="actions">
           <Link className="btn btn-lime" href="/">
