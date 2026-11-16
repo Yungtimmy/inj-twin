@@ -1,0 +1,55 @@
+{
+  "handle": "example_mina",
+  "displayName": "Mina Example",
+  "avatarUrl": null,
+  "posts": [
+    {
+      "id": "mina-1",
+      "text": "Injective governance proposal is up. Read the draft before voting.",
+      "createdAt": "2026-11-14T08:05:00.000Z",
+      "type": "original"
+    },
+    {
+      "id": "mina-2",
+      "text": "Voting on the Injective proposal. The parameter change looks measured.",
+      "createdAt": "2026-11-14T09:15:00.000Z",
+      "type": "original"
+    },
+    {
+      "id": "mina-3",
+      "text": "I voted. The proposal text is clearer than the last governance note.",
+      "createdAt": "2026-11-14T08:40:00.000Z",
+      "type": "reply"
+    },
+    {
+      "id": "mina-4",
+      "text": "Governance only counts when delegates actually read the proposal.",
+      "createdAt": "2026-11-13T10:10:00.000Z",
+      "type": "original"
+    },
+    {
+      "id": "mina-5",
+      "text": "Delegate notes: how are you voting on the upgrade proposal?",
+      "createdAt": "2026-11-13T09:30:00.000Z",
+      "type": "reply"
+    },
+    {
+      "id": "mina-6",
+      "text": "Proposal quorum is close. Governance participation on Injective still needs delegates.",
+      "createdAt": "2026-11-12T07:50:00.000Z",
+      "type": "original"
+    },
+    {
+      "id": "mina-7",
+      "text": "The new proposal adjusts parameters. A careful read before voting.",
+      "createdAt": "2026-11-12T11:05:00.000Z",
+      "type": "reply"
+    },
+    {
+      "id": "mina-8",
+      "text": "Voting closes on the Injective governance proposal. Quorum is the question.",
+      "createdAt": "2026-11-11T08:20:00.000Z",
+      "type": "quote"
+    }
+  ]
+}
