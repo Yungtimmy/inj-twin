@@ -4,8 +4,8 @@ import { notFound, redirect } from 'next/navigation';
 import { PairActions, WaitingActions } from '@/components/pair-actions';
 import { TwinCard } from '@/components/twin-card';
 import { WaitingRefresh } from '@/components/waiting-refresh';
-import { siteUrl } from '@/lib/config';
-import { normalizeHandle } from '@/lib/handles';
+import { siteUrl, usingFixtures } from '@/lib/config';
+import { initials, normalizeHandle } from '@/lib/handles';
 import { ogWhy } from '@/lib/share';
 import { requestOrigin } from '@/lib/origin';
 import { readTwin } from '@/lib/twin-service';
@@ -33,8 +33,8 @@ export async function generateMetadata({ params }: RouteParams): Promise<Metadat
       twitter: { card: 'summary_large_image', title, description, images: [image] },
     };
   }
-  if (result.body.status === 'waiting') {
-    const title = `@${result.body.handle} is waiting for an INJ twin`;
+  if (result.body.status === 'waiting' || result.http === 404) {
+    const title = `@${handle} is waiting for an INJ twin`;
     const description = "Your twin hasn't arrived yet.";
     return {
       title,
@@ -88,8 +88,19 @@ export default async function TwinPage({ params }: RouteParams) {
     );
   }
 
-  if (result.body.status === 'waiting') {
-    const waiting = result.body;
+  const waiting =
+    result.body.status === 'waiting'
+      ? result.body
+      : result.http === 404
+        ? {
+            handle,
+            initials: initials(handle),
+            avatarUrl: null as string | null,
+            demo: usingFixtures(),
+          }
+        : null;
+
+  if (waiting) {
     return (
       <section className="split">
         <div>
@@ -99,7 +110,7 @@ export default async function TwinPage({ params }: RouteParams) {
           </p>
           <WaitingActions handle={waiting.handle} />
           {waiting.demo ? <p className="hint">Example data</p> : null}
-          <WaitingRefresh />
+          {result.body.status === 'waiting' ? <WaitingRefresh /> : null}
         </div>
         <div>
           <TwinCard
@@ -117,8 +128,10 @@ export default async function TwinPage({ params }: RouteParams) {
   return (
     <section className="split">
       <div>
-        <h1>{result.body.status === 'error' && result.body.code === 'config' ? 'Twin pool is not connected' : 'No twin yet'}</h1>
-        <p className="lede">{result.body.status === 'error' ? result.body.message : 'This handle is not in the pool.'}</p>
+        <h1>Twin pool is not connected</h1>
+        <p className="lede">
+          {result.body.status === 'error' ? result.body.message : 'The twin pool is not available right now. Please try again.'}
+        </p>
         <div className="actions">
           <Link className="btn btn-lime" href="/">
             Find my twin

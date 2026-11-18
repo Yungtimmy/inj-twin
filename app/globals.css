@@ -205,11 +205,11 @@ footer {
 
 .score {
   font: 400 112px/1 var(--serif);
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
   font-variant-numeric: tabular-nums;
   margin-top: 20px;
 }
-.score small { font-size: 56px; color: var(--text-2); letter-spacing: 0; margin-left: 0; }
+.score small { font-size: 56px; color: var(--text-2); letter-spacing: 0; margin-left: 0.04em; }
 .score-gap { height: 24px; }
 
 .handles { font-size: 17px; font-weight: 500; margin-top: 8px; }
@@ -235,11 +235,12 @@ footer {
 .split {
   flex: 1;
   display: grid;
-  grid-template-columns: 1fr 440px;
+  grid-template-columns: minmax(0, 1fr) 440px;
   gap: 80px;
   align-items: center;
   padding: 48px 0 80px;
 }
+.split > * { min-width: 0; }
 .center {
   flex: 1;
   display: flex;
@@ -346,10 +347,21 @@ dialog.panel::backdrop { background: rgba(12, 14, 21, 0.72); }
   .credit { display: none; }
   h1 { font-size: 44px; }
   .title-search { font-size: 40px; }
-  .tcard { width: 100%; padding: 24px; }
+  .tcard,
+  .find,
+  .lede { width: 100%; max-width: 100%; }
+  .tcard { padding: 24px; }
   .score { font-size: 88px; }
   .score small { font-size: 44px; }
   footer { flex-direction: column; }
-  .split { grid-template-columns: 1fr; gap: 48px; padding-top: 16px; }
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+    padding-top: 16px;
+  }
+  .result {
+    align-content: start;
+    gap: 48px;
+  }
   .result > div:last-child { order: -1; }
 }
